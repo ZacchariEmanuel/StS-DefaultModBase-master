@@ -160,12 +160,12 @@ public class TheDefault extends CustomPlayer {
         retVal.add(TestStrike.ID);
         retVal.add(TestStrike.ID);
         retVal.add(TestStrike.ID);
-        retVal.add(TestStrike.ID);
         retVal.add(TestDefend.ID);
         retVal.add(TestDefend.ID);
         retVal.add(TestDefend.ID);
         retVal.add(TestDefend.ID);
-        retVal.add(TestDefend.ID);
+        retVal.add(FightOrFlight.ID);
+        retVal.add(TrampleWeakness.ID);
         return retVal;
     }
 

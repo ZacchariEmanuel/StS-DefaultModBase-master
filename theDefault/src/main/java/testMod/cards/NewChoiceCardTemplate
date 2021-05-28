@@ -18,9 +18,9 @@ import java.util.Iterator;
 
 import static testMod.DefaultMod.makeCardPath;
 
-public class TestModalCard3 extends AbstractDynamicCard {
-    public static final String ID = DefaultMod.makeID(TestModalCard3.class.getSimpleName());
-    public static final String IMG = makeCardPath("TestImage.png"); //Default IMG
+public class ${NAME} extends AbstractDynamicCard {
+    public static final String ID = DefaultMod.makeID(${NAME}.class.getSimpleName());
+    public static final String IMG = makeCardPath("Templates/250_x190_Skill.png"); //Default Image
 
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.COMMON;
@@ -32,17 +32,27 @@ public class TestModalCard3 extends AbstractDynamicCard {
     private static final int UPGRADED_COST = -2;
     // /STAT DECLARATION/
 
-    public TestModalCard3() {
+    public ${NAME}() {
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
         this.purgeOnUse = true;
     }
-    
-    //CHOICE CARD FUNCTIONALITY 
+
+    public void upgrade() {
+        if (!this.upgraded) {
+            this.upgradeName();
+        }
+    }
+
+    public AbstractCard makeCopy() {
+        return new ${NAME}();
+    }
+
+	// CHOICE CARD FUNCTIONALITY
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         ArrayList<AbstractCard> stanceChoices = new ArrayList();
-        stanceChoices.add(new ChooseLeft());
-        stanceChoices.add(new ChooseRight());
+        stanceChoices.add(new ${LeftChoice}());
+        stanceChoices.add(new ${RightChoice}());
         if (this.upgraded) {
             Iterator var4 = stanceChoices.iterator();
 
@@ -54,28 +64,19 @@ public class TestModalCard3 extends AbstractDynamicCard {
 
         this.addToBot(new ChooseOneAction(stanceChoices));
     }
-    
 
-    public void upgrade() {
-        if (!this.upgraded) {
-            this.upgradeName();
-        }
-    }
-
-    public AbstractCard makeCopy() {
-        return new TestModalCard3();
-    }
+    // /CHOICE CARD FUNCTIONALITY /
 }
 
 
 
-class ChooseLeft extends AbstractDynamicCard {
+class ${LeftChoice} extends AbstractDynamicCard {
 
     // TEXT DECLARATION
 
-    public static final String ID = DefaultMod.makeID(ChooseLeft.class.getSimpleName());
-    public static final String IMG = makeCardPath("TestImage.png");
-    // Use if you have a png for this card //public static final String IMG = makeCardPath("ChooseLeft.png");
+    public static final String ID = DefaultMod.makeID(${LeftChoice}.class.getSimpleName());
+    public static final String IMG = makeCardPath("Attack.png"); //Default IMG
+    // Use if you have a png for this card //public static final String IMG = makeCardPath("${LeftChoice}.png");
 
     // /TEXT DECLARATION/
 
@@ -95,28 +96,11 @@ class ChooseLeft extends AbstractDynamicCard {
     // /STAT DECLARATION/
 
 
-    public ChooseLeft() {
-        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
-        baseDamage = DAMAGE;
-    }
-
-
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         AbstractDungeon.actionManager.addToBottom(
                 new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
-    }
-
-    public void onChoseThisOption() {
-        AbstractCard c = makeCopy();
-        if(upgraded) c.upgrade();
-
-        AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(c, true));
-    }
-
-    public AbstractCard makeCopy() {
-        return new ChooseLeft();
     }
 
     // Upgraded stats.
@@ -128,15 +112,31 @@ class ChooseLeft extends AbstractDynamicCard {
             initializeDescription();
         }
     }
+
+    public ${LeftChoice}() {
+        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
+        baseDamage = DAMAGE;
+    }
+
+    // Adds the card to your hand when you select it as your choice
+    public void onChoseThisOption() {
+        AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(makeCopy(), true));
+    }
+
+    public AbstractCard makeCopy() {
+        return new ${LeftChoice}();
+    }
 }
 
-class ChooseRight extends AbstractDynamicCard {
+
+
+class ${RightChoice} extends AbstractDynamicCard {
 
     // TEXT DECLARATION
 
-    public static final String ID = DefaultMod.makeID(ChooseRight.class.getSimpleName());
+    public static final String ID = DefaultMod.makeID(${RightChoice}.class.getSimpleName());
     public static final String IMG = makeCardPath("Skill.png"); //Default IMG
-    // Use if you have a png for this card //public static final String IMG = makeCardPath("ChooseRight.png");
+    // Use if you have a png for this card //public static final String IMG = makeCardPath("${RightChoice}.png");
 
     // /TEXT DECLARATION/
 
@@ -155,33 +155,13 @@ class ChooseRight extends AbstractDynamicCard {
 
     // /STAT DECLARATION/
 
-
-    public ChooseRight() {
-        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
-        baseBlock = BLOCK;
-    }
-
-
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, p, block));
     }
 
-    // Adds the card to your hand when you select it as an option
-    @Override
-    public void onChoseThisOption() {
-        AbstractCard c = makeCopy();
-        if(upgraded) c.upgrade();
-
-        AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(c, true));
-    }
-
-    public AbstractCard makeCopy() {
-        return new ChooseRight();
-    }
-
-    // Upgraded stats.
+	// Upgraded stats.
     @Override
     public void upgrade() {
         if (!upgraded) {
@@ -190,19 +170,37 @@ class ChooseRight extends AbstractDynamicCard {
             initializeDescription();
         }
     }
+
+    public ${RightChoice}() {
+        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
+        baseBlock = BLOCK;
+    }
+
+    // Adds the card to your hand when you select it as your choice
+    @Override
+    public void onChoseThisOption() {
+        AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(makeCopy(), true));
+    }
+
+    public AbstractCard makeCopy() {
+        return new ${RightChoice}();
+    }
+
+
 }
 
-/*
-  "testMod:TestModalCard3": {
-    "NAME": "Test Modal Card 3",
-    "DESCRIPTION": "Choose  [#f2f2f2]left[] or [#242424]right[]."
+/* localization/card text template, goes in Card-Strings.json
+
+  "testMod:${NAME}": {
+    "NAME": "${NAME}",
+    "DESCRIPTION": "Choose  [#f2f2f2]${LeftChoice}[] or [#a6a6a6]${RightChoice}[]."
   },
-  "testMod:ChooseLeft": {
-    "NAME": "Choose Left",
+  "testMod:${LeftChoice}": {
+    "NAME": "${LeftChoice}",
     "DESCRIPTION": "Deal !D! Damage."
   },
-  "testMod:ChooseRight": {
-    "NAME": "Choose Right",
+  "testMod:${RightChoice}": {
+    "NAME": "${RightChoice}",
     "DESCRIPTION": "Gain !B! Block."
   },
  */

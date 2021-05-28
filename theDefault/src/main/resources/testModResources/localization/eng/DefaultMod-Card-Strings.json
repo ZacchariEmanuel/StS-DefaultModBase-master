@@ -1,36 +1,31 @@
 {
-  "testMod:TestModalCard3": {
-    "NAME": "Test Modal Card 3",
-    "DESCRIPTION": "Choose  [#f2f2f2]left[] or [#242424]right[]."
+  "testMod:FightOrFlight": {
+    "NAME": "Fight Or Flight",
+    "DESCRIPTION": "Choose  [#fae9e8]Fight[] or [#8f918e]Flight[]."
   },
-  "testMod:ChooseLeft": {
-    "NAME": "Choose Left",
+  "testMod:Fight": {
+    "NAME": "Fight",
     "DESCRIPTION": "Deal !D! Damage."
   },
-  "testMod:ChooseRight": {
-    "NAME": "Choose Right",
+  "testMod:Flight": {
+    "NAME": "Flight",
     "DESCRIPTION": "Gain !B! Block."
   },
-
-  "testMod:TestModalCard2": {
-    "NAME": "Test Modal Card 2",
-    "DESCRIPTION": "Pick an [#0000ff]option[]."
+  "testMod:TrampleWeakness": {
+    "NAME": "Trample Weakness",
+    "DESCRIPTION": "Choose  [#fae9e8]Trample[] or [#8f918e]Weakness[]."
   },
-  "testMod:ChooseA": {
-    "NAME": "Choose A",
-    "DESCRIPTION": "Deal !D! Damage."
+  "testMod:Trample": {
+    "NAME": "Trample",
+    "DESCRIPTION": "Deal !D! Damage. NL Apply !M! Vulnerable."
   },
-  "testMod:ChooseB": {
-    "NAME": "Choose B",
-    "DESCRIPTION": "Deal !D! Damage."
+  "testMod:Weakness": {
+    "NAME": "Weakness",
+    "DESCRIPTION": "Deal !D! Damage. NL Apply !M! Weak."
   },
   "testMod:TestStrike": {
     "NAME": "Strike",
     "DESCRIPTION": "Deal !D! damage."
-  },
-  "testMod:TestModalCard": {
-    "NAME": "Test Modal Card",
-    "DESCRIPTION": "Pick an [#0000ff]option[]."
   },
   "testMod:TestDefend": {
     "NAME": "Defend",

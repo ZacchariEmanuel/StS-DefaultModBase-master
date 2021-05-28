@@ -14,8 +14,7 @@ public class TestDefend extends AbstractDynamicCard {
     // TEXT DECLARATION
 
     public static final String ID = DefaultMod.makeID(TestDefend.class.getSimpleName());
-    public static final String IMG = makeCardPath("Skill.png"); //Default IMG
-    // Use if you have a png for this card //public static final String IMG = makeCardPath("TestBlock.png");
+    public static final String IMG = makeCardPath("Defend.png");
 
     // /TEXT DECLARATION/
 

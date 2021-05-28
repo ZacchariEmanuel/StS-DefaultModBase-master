@@ -16,8 +16,7 @@ public class TestStrike extends AbstractDynamicCard {
     // TEXT DECLARATION
 
     public static final String ID = DefaultMod.makeID(TestStrike.class.getSimpleName());
-    public static final String IMG = makeCardPath("Attack.png"); //Default IMG
-    // Use if you have a png for this card //public static final String IMG = makeCardPath("Strike.png");
+    public static final String IMG = makeCardPath("Strike.png");
 
     // /TEXT DECLARATION/
 
