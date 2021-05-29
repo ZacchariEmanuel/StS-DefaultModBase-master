@@ -1,4 +1,13 @@
 {
+  "testMod:DualityStarterRelic": {
+    "NAME": "Duality",
+    "FLAVOR": "Just as we have two eyes and two feet, duality is a part of life.",
+    "DESCRIPTIONS": [
+      "At the end of your turn: NL Deal damage to all enemies equal to your [#fae9e8]Light[] ( #b",
+      ") NL Gain Block equal to your [#8f918e]Dark[] ( #b",
+      ")."
+    ]
+  },
   "testMod:PlaceholderRelic": {
     "NAME": "Placeholder Energy Relic",
     "FLAVOR": "The snake is a friend.",

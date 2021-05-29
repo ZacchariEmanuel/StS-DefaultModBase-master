@@ -1,6 +1,7 @@
 package testMod.cards;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
@@ -12,6 +13,9 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import testMod.DefaultMod;
 import testMod.characters.TheDefault;
+import testMod.powers.CommonPower;
+import testMod.powers.DarkPower;
+import testMod.powers.LightPower;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -84,7 +88,7 @@ class Fight extends AbstractDynamicCard {
     private static final CardRarity RARITY = CardRarity.SPECIAL;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
-    public static final CardColor COLOR = TheDefault.Enums.COLOR_GRAY;
+    public static final CardColor COLOR = TheDefault.Enums.COLOR_WHITE;
 
     private static final int COST = 1;
 
@@ -97,8 +101,7 @@ class Fight extends AbstractDynamicCard {
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        AbstractDungeon.actionManager.addToBottom(
-                new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+        AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
     }
 
     // Upgraded stats.
@@ -118,12 +121,12 @@ class Fight extends AbstractDynamicCard {
 
     // Adds the card to your hand when you select it as your choice
     public void onChoseThisOption() {
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player,
+                new LightPower(AbstractDungeon.player, AbstractDungeon.player, 1), 1));
         AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(makeCopy(), true));
     }
 
-    public AbstractCard makeCopy() {
-        return new Fight();
-    }
+    public AbstractCard makeCopy(){ return new Fight(); }
 }
 
 
@@ -142,7 +145,7 @@ class Flight extends AbstractDynamicCard {
     private static final CardRarity RARITY = CardRarity.SPECIAL;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.SKILL;
-    public static final CardColor COLOR = TheDefault.Enums.COLOR_GRAY;
+    public static final CardColor COLOR = TheDefault.Enums.COLOR_BLACK;
 
     private static final int COST = 1;
 
@@ -175,14 +178,14 @@ class Flight extends AbstractDynamicCard {
     // Adds the card to your hand when you select it as your choice
     @Override
     public void onChoseThisOption() {
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player,
+                new DarkPower(AbstractDungeon.player, AbstractDungeon.player, 1), 1));
         AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(makeCopy(), true));
     }
 
     public AbstractCard makeCopy() {
         return new Flight();
     }
-
-
 }
 
 /* localization/card text template, goes in Card-Strings.json

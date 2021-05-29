@@ -13,8 +13,11 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
+import javafx.scene.effect.Light;
 import testMod.DefaultMod;
 import testMod.characters.TheDefault;
+import testMod.powers.DarkPower;
+import testMod.powers.LightPower;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -87,7 +90,7 @@ class Trample extends AbstractDynamicCard {
     private static final CardRarity RARITY = CardRarity.SPECIAL;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
-    public static final CardColor COLOR = TheDefault.Enums.COLOR_GRAY;
+    public static final CardColor COLOR = TheDefault.Enums.COLOR_WHITE;
 
     private static final int COST = 0;
     private static final int MAGICNUMBER = 2;
@@ -124,6 +127,8 @@ class Trample extends AbstractDynamicCard {
 
     // Adds the card to your hand when you select it as your choice
     public void onChoseThisOption() {
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player,
+                new LightPower(AbstractDungeon.player, AbstractDungeon.player, 1), 1));
         AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(makeCopy(), true));
     }
 
@@ -148,7 +153,7 @@ class Weakness extends AbstractDynamicCard {
     private static final CardRarity RARITY = CardRarity.SPECIAL;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
-    public static final CardColor COLOR = TheDefault.Enums.COLOR_GRAY;
+    public static final CardColor COLOR = TheDefault.Enums.COLOR_BLACK;
 
     private static final int COST = 0;
     private static final int MAGICNUMBER = 2;
@@ -185,6 +190,8 @@ class Weakness extends AbstractDynamicCard {
 
     // Adds the card to your hand when you select it as your choice
     public void onChoseThisOption() {
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player,
+                new DarkPower(AbstractDungeon.player, AbstractDungeon.player, 1), 1));
         AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(makeCopy(), true));
     }
 

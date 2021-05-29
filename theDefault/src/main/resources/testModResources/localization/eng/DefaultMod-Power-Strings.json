@@ -1,4 +1,12 @@
 {
+"testMod:LightPower": {
+        "NAME": "Light",
+        "DESCRIPTIONS": ["The number of times you chose Light ( #b", " time.)", " times.)"]
+},
+"testMod:DarkPower": {
+        "NAME": "Dark",
+        "DESCRIPTIONS": ["The number of times you chose Dark ( #b", " time.)", " times.)"]
+},
 "testMod:CommonPower": {
         "NAME": "Placeholder Power",
         "DESCRIPTIONS": ["You applied #b", " keyword.", " keywords."]

@@ -24,10 +24,7 @@ import testMod.cards.*;
 import testMod.characters.TheDefault;
 import testMod.events.IdentityCrisisEvent;
 import testMod.potions.PlaceholderPotion;
-import testMod.relics.BottledPlaceholderRelic;
-import testMod.relics.DefaultClickableRelic;
-import testMod.relics.PlaceholderRelic;
-import testMod.relics.PlaceholderRelic2;
+import testMod.relics.*;
 import testMod.util.IDCheckDontTouchPls;
 import testMod.util.TextureLoader;
 import testMod.variables.DefaultCustomVariable;
@@ -95,7 +92,10 @@ public class DefaultMod implements
     // Colors (RGB)
     // Character Color
     public static final Color DEFAULT_GRAY = CardHelper.getColor(64.0f, 70.0f, 70.0f);
-    
+    public static final Color DEFAULT_WHITE= CardHelper.getColor(240.0f, 237.0f, 237.0f);
+    public static final Color DEFAULT_BLACK = CardHelper.getColor(36.0f, 38.0f, 37.0f);
+
+
     // Potion Colors in RGB
     public static final Color PLACEHOLDER_POTION_LIQUID = CardHelper.getColor(209.0f, 53.0f, 18.0f); // Orange-ish Red
     public static final Color PLACEHOLDER_POTION_HYBRID = CardHelper.getColor(255.0f, 230.0f, 230.0f); // Near White
@@ -112,6 +112,12 @@ public class DefaultMod implements
     private static final String ATTACK_DEFAULT_GRAY = "testModResources/images/512/bg_attack_default_gray.png";
     private static final String SKILL_DEFAULT_GRAY = "testModResources/images/512/bg_skill_default_gray.png";
     private static final String POWER_DEFAULT_GRAY = "testModResources/images/512/bg_power_default_gray.png";
+    private static final String ATTACK_DEFAULT_WHITE = "testModResources/images/512/bg_attack_default_white.png";
+    private static final String SKILL_DEFAULT_WHITE = "testModResources/images/512/bg_skill_default_white.png";
+    private static final String POWER_DEFAULT_WHITE = "testModResources/images/512/bg_power_default_white.png";
+    private static final String ATTACK_DEFAULT_BLACK= "testModResources/images/512/bg_attack_default_black.png";
+    private static final String SKILL_DEFAULT_BLACK = "testModResources/images/512/bg_skill_default_black.png";
+    private static final String POWER_DEFAULT_BLACK = "testModResources/images/512/bg_power_default_black.png";
     
     private static final String ENERGY_ORB_DEFAULT_GRAY = "testModResources/images/512/card_default_gray_orb.png";
     private static final String CARD_ENERGY_ORB = "testModResources/images/512/card_small_orb.png";
@@ -119,6 +125,13 @@ public class DefaultMod implements
     private static final String ATTACK_DEFAULT_GRAY_PORTRAIT = "testModResources/images/1024/bg_attack_default_gray.png";
     private static final String SKILL_DEFAULT_GRAY_PORTRAIT = "testModResources/images/1024/bg_skill_default_gray.png";
     private static final String POWER_DEFAULT_GRAY_PORTRAIT = "testModResources/images/1024/bg_power_default_gray.png";
+    private static final String ATTACK_DEFAULT_WHITE_PORTRAIT = "testModResources/images/1024/bg_attack_default_white.png";
+    private static final String SKILL_DEFAULT_WHITE_PORTRAIT = "testModResources/images/1024/bg_skill_default_white.png";
+    private static final String POWER_DEFAULT_WHITE_PORTRAIT = "testModResources/images/1024/bg_power_default_white.png";
+    private static final String ATTACK_DEFAULT_BLACK_PORTRAIT = "testModResources/images/1024/bg_attack_default_black.png";
+    private static final String SKILL_DEFAULT_BLACK_PORTRAIT = "testModResources/images/1024/bg_skill_default_black.png";
+    private static final String POWER_DEFAULT_BLACK_PORTRAIT = "testModResources/images/1024/bg_power_default_black.png";
+    
     private static final String ENERGY_ORB_DEFAULT_GRAY_PORTRAIT = "testModResources/images/1024/card_default_gray_orb.png";
     
     // Character assets
@@ -201,15 +214,39 @@ public class DefaultMod implements
         // Change their locations to reflect your actual ID rather than theDefault. They get loaded before getID is a thing.
         
         logger.info("Done subscribing");
-        
+
         logger.info("Creating the color " + TheDefault.Enums.COLOR_GRAY.toString());
-        
+
         BaseMod.addColor(TheDefault.Enums.COLOR_GRAY, DEFAULT_GRAY, DEFAULT_GRAY, DEFAULT_GRAY,
                 DEFAULT_GRAY, DEFAULT_GRAY, DEFAULT_GRAY, DEFAULT_GRAY,
                 ATTACK_DEFAULT_GRAY, SKILL_DEFAULT_GRAY, POWER_DEFAULT_GRAY, ENERGY_ORB_DEFAULT_GRAY,
                 ATTACK_DEFAULT_GRAY_PORTRAIT, SKILL_DEFAULT_GRAY_PORTRAIT, POWER_DEFAULT_GRAY_PORTRAIT,
                 ENERGY_ORB_DEFAULT_GRAY_PORTRAIT, CARD_ENERGY_ORB);
+
+
+        logger.info("Done creating the color");
+
+
+        logger.info("Creating the color " + TheDefault.Enums.COLOR_WHITE.toString());
+
+        BaseMod.addColor(TheDefault.Enums.COLOR_WHITE, DEFAULT_WHITE, DEFAULT_WHITE, DEFAULT_WHITE,
+                DEFAULT_WHITE, DEFAULT_WHITE, DEFAULT_WHITE, DEFAULT_WHITE,
+                ATTACK_DEFAULT_WHITE, SKILL_DEFAULT_WHITE, POWER_DEFAULT_WHITE, ENERGY_ORB_DEFAULT_GRAY,
+                ATTACK_DEFAULT_WHITE_PORTRAIT, SKILL_DEFAULT_WHITE_PORTRAIT, POWER_DEFAULT_WHITE_PORTRAIT,
+                ENERGY_ORB_DEFAULT_GRAY_PORTRAIT, CARD_ENERGY_ORB);
+
+
+        logger.info("Done creating the color");
         
+        logger.info("Creating the color " + TheDefault.Enums.COLOR_BLACK.toString());
+
+        BaseMod.addColor(TheDefault.Enums.COLOR_BLACK, DEFAULT_BLACK, DEFAULT_BLACK, DEFAULT_BLACK,
+                DEFAULT_BLACK, DEFAULT_BLACK, DEFAULT_BLACK, DEFAULT_BLACK,
+                ATTACK_DEFAULT_BLACK, SKILL_DEFAULT_BLACK, POWER_DEFAULT_BLACK, ENERGY_ORB_DEFAULT_GRAY,
+                ATTACK_DEFAULT_BLACK_PORTRAIT, SKILL_DEFAULT_BLACK_PORTRAIT, POWER_DEFAULT_BLACK_PORTRAIT,
+                ENERGY_ORB_DEFAULT_GRAY_PORTRAIT, CARD_ENERGY_ORB);
+
+
         logger.info("Done creating the color");
         
         
@@ -392,6 +429,7 @@ public class DefaultMod implements
         // in order to automatically differentiate which pool to add the relic too.
 
         // This adds a character specific relic. Only when you play with the mentioned color, will you get this relic.
+        BaseMod.addRelicToCustomPool(new DualityStarterRelic(), TheDefault.Enums.COLOR_GRAY);
         BaseMod.addRelicToCustomPool(new PlaceholderRelic(), TheDefault.Enums.COLOR_GRAY);
         BaseMod.addRelicToCustomPool(new BottledPlaceholderRelic(), TheDefault.Enums.COLOR_GRAY);
         BaseMod.addRelicToCustomPool(new DefaultClickableRelic(), TheDefault.Enums.COLOR_GRAY);

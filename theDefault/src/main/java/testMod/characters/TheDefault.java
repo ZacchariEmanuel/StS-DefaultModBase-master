@@ -23,9 +23,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import testMod.DefaultMod;
 import testMod.cards.*;
-import testMod.relics.DefaultClickableRelic;
 import testMod.relics.PlaceholderRelic;
-import testMod.relics.PlaceholderRelic2;
+import testMod.relics.DualityStarterRelic;
 
 import java.util.ArrayList;
 
@@ -53,6 +52,18 @@ public class TheDefault extends CustomPlayer {
         public static AbstractCard.CardColor COLOR_GRAY;
         @SpireEnum(name = "DEFAULT_GRAY_COLOR") @SuppressWarnings("unused")
         public static CardLibrary.LibraryType LIBRARY_COLOR;
+
+        //  Testing adding other colors
+        @SpireEnum(name = "DEFAULT_WHITE_COLOR") // These two HAVE to have the same absolutely identical name.
+        public static AbstractCard.CardColor COLOR_WHITE;
+        @SpireEnum(name = "DEFAULT_WHITE_COLOR") @SuppressWarnings("unused")
+        public static CardLibrary.LibraryType LIBRARY_COLOR_WHITE;
+
+        @SpireEnum(name = "DEFAULT_BLACK_COLOR") // These two HAVE to have the same absolutely identical name.
+        public static AbstractCard.CardColor COLOR_BLACK;
+        @SpireEnum(name = "DEFAULT_BLACK_COLOR") @SuppressWarnings("unused")
+        public static CardLibrary.LibraryType LIBRARY_COLOR_BLACK;
+        //  /Testing adding other colors/
     }
 
     // =============== CHARACTER ENUMERATORS  =================
@@ -173,11 +184,13 @@ public class TheDefault extends CustomPlayer {
     public ArrayList<String> getStartingRelics() {
         ArrayList<String> retVal = new ArrayList<>();
 
-        retVal.add(PlaceholderRelic.ID);
+        //retVal.add(PlaceholderRelic.ID);
+        retVal.add(DualityStarterRelic.ID);
 
         // Mark relics as seen - makes it visible in the compendium immediately
         // If you don't have this it won't be visible in the compendium until you see them in game
         UnlockTracker.markRelicAsSeen(PlaceholderRelic.ID);
+        UnlockTracker.markRelicAsSeen(DualityStarterRelic.ID);
 
         return retVal;
     }
@@ -231,7 +244,7 @@ public class TheDefault extends CustomPlayer {
     //Which card should be obtainable from the Match and Keep event?
     @Override
     public AbstractCard getStartCardForEvent() {
-        return new DefaultCommonAttack();
+        return new FightOrFlight();
     }
 
     // The class name as it appears next to your player name in-game
