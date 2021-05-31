@@ -27,8 +27,10 @@ import testMod.potions.PlaceholderPotion;
 import testMod.relics.*;
 import testMod.util.IDCheckDontTouchPls;
 import testMod.util.TextureLoader;
+import testMod.variables.DarkCountVariable;
 import testMod.variables.DefaultCustomVariable;
 import testMod.variables.DefaultSecondMagicNumber;
+import testMod.variables.LightCountVariable;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -419,6 +421,9 @@ public class DefaultMod implements
     
     @Override
     public void receiveEditRelics() {
+        //TEST//
+        BaseMod.addDynamicVariable(new LightCountVariable());
+
         logger.info("Adding relics");
 
         // Take a look at https://github.com/daviscook477/BaseMod/wiki/AutoAdd
@@ -459,7 +464,8 @@ public class DefaultMod implements
         // Add the Custom Dynamic variables
         BaseMod.addDynamicVariable(new DefaultCustomVariable());
         BaseMod.addDynamicVariable(new DefaultSecondMagicNumber());
-        
+        BaseMod.addDynamicVariable(new DarkCountVariable());
+
         logger.info("Adding cards");
         // Add the cards
         // Don't delete these default cards yet. You need 1 of each type and rarity (technically) for your game not to crash

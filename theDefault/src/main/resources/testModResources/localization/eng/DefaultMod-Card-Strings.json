@@ -1,4 +1,33 @@
 {
+  "testMod:PurgeTheSinful": {
+    "NAME": "Purge the Sinful",
+    "DESCRIPTION": "Deal !D! damage. NL If Fatal, gain 1 [#fae9e8]Light[] permanently. Exhaust. "
+  },
+  "testMod:LightDarkPower": {
+    "NAME": "Light Dark Power",
+    "DESCRIPTION": "Choose  [#fae9e8]Light Power[] or [#8f918e]Dark Power[]."
+  },
+  "testMod:LightPowerPower": {
+    "NAME": "Light Power",
+    "DESCRIPTION": "Gain !M! [#fae9e8]Light[]."
+  },
+  "testMod:DarkPowerPower": {
+    "NAME": "Dark Power",
+    "DESCRIPTION": "Gain !M! [#8f918e]Dark[]"
+  },
+  "testMod:PartAndParcel": {
+    "NAME": "PartAndParcel",
+    "DESCRIPTION": "Choose  [#fae9e8]Part[] or [#8f918e]Parcel[]."
+  },
+  "testMod:Part": {
+    "NAME": "Part",
+    "DESCRIPTION": "Discard 1 Card. NL Deal !D! damage."
+  },
+  "testMod:Parcel": {
+    "NAME": "Parcel",
+    "DESCRIPTION": "Deal !D! Damage. NL Draw !M! card.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL Draw !M! cards."
+  },
   "testMod:FightOrFlight": {
     "NAME": "Fight Or Flight",
     "DESCRIPTION": "Choose  [#fae9e8]Fight[] or [#8f918e]Flight[]."

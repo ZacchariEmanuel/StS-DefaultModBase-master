@@ -3,9 +3,7 @@
     "NAME": "Duality",
     "FLAVOR": "Just as we have two eyes and two feet, duality is a part of life.",
     "DESCRIPTIONS": [
-      "At the end of your turn: NL Deal damage to all enemies equal to your [#fae9e8]Light[] ( #b",
-      ") NL Gain Block equal to your [#8f918e]Dark[] ( #b",
-      ")."
+      "At the end of your turn deal damage to all enemies equal to your [#fffba1]Light[]. At the end of combat, heal hp equal to your [#8f918e]Dark[]."
     ]
   },
   "testMod:PlaceholderRelic": {

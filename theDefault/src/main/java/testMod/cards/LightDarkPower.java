@@ -11,9 +11,6 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.VulnerablePower;
-import com.megacrit.cardcrawl.powers.WeakPower;
-import javafx.scene.effect.Light;
 import testMod.DefaultMod;
 import testMod.characters.TheDefault;
 import testMod.powers.DarkPower;
@@ -24,9 +21,9 @@ import java.util.Iterator;
 
 import static testMod.DefaultMod.makeCardPath;
 
-public class TrampleWeakness extends AbstractDynamicCard {
-    public static final String ID = DefaultMod.makeID(TrampleWeakness.class.getSimpleName());
-    public static final String IMG = makeCardPath("TrampleWeakness.png"); //Default Image
+public class LightDarkPower extends AbstractDynamicCard {
+    public static final String ID = DefaultMod.makeID(LightDarkPower.class.getSimpleName());
+    public static final String IMG = makeCardPath("LightDarkPowerSkill.png"); //Default Image
 
     // STAT DECLARATION
     private static final CardRarity RARITY = CardRarity.COMMON;
@@ -38,7 +35,7 @@ public class TrampleWeakness extends AbstractDynamicCard {
     private static final int UPGRADED_COST = -2;
     // /STAT DECLARATION/
 
-    public TrampleWeakness() {
+    public LightDarkPower() {
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
         this.purgeOnUse = true;
     }
@@ -50,15 +47,15 @@ public class TrampleWeakness extends AbstractDynamicCard {
     }
 
     public AbstractCard makeCopy() {
-        return new TrampleWeakness();
+        return new LightDarkPower();
     }
 
     // CHOICE CARD FUNCTIONALITY
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         ArrayList<AbstractCard> stanceChoices = new ArrayList();
-        stanceChoices.add(new Trample());
-        stanceChoices.add(new Weakness());
+        stanceChoices.add(new LightPowerPower());
+        stanceChoices.add(new DarkPowerPower());
         if (this.upgraded) {
             Iterator var4 = stanceChoices.iterator();
 
@@ -75,12 +72,13 @@ public class TrampleWeakness extends AbstractDynamicCard {
 }
 
 
-class Trample extends AbstractDynamicCard {
+class LightPowerPower extends AbstractDynamicCard {
 
     // TEXT DECLARATION
 
-    public static final String ID = DefaultMod.makeID(Trample.class.getSimpleName());
-    public static final String IMG = makeCardPath("Trample.png");
+    public static final String ID = DefaultMod.makeID(LightPowerPower.class.getSimpleName());
+    public static final String IMG = makeCardPath("LightPowerPower.png"); //Default IMG
+    // Use if you have a png for this card //public static final String IMG = makeCardPath("LightPower.png");
 
     // /TEXT DECLARATION/
 
@@ -88,23 +86,26 @@ class Trample extends AbstractDynamicCard {
     // STAT DECLARATION
 
     private static final CardRarity RARITY = CardRarity.SPECIAL;
-    private static final CardTarget TARGET = CardTarget.ENEMY;
-    private static final CardType TYPE = CardType.ATTACK;
-    public static final CardColor COLOR = TheDefault.Enums.COLOR_WHITE;
+    private static final CardTarget TARGET = CardTarget.SELF;
+    private static final CardType TYPE = CardType.POWER;
+    public static final CardColor COLOR = TheDefault.Enums.COLOR_BLACK;
 
     private static final int COST = 1;
-    private static final int MAGICNUMBER = 2;
-    private static final int DAMAGE = 4;
-
+    private static final int MAGIC = 2;
+    private static final int MAGIC_PLUS_UPGRADE = 1;
 
     // /STAT DECLARATION/
 
+    public LightPowerPower() {
+        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
+        magicNumber = baseMagicNumber = MAGIC;
+    }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(m, p, new VulnerablePower(m, this.magicNumber, false), this.magicNumber));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player,
+                new LightPower(AbstractDungeon.player, AbstractDungeon.player, magicNumber), magicNumber));
     }
 
     // Upgraded stats.
@@ -112,18 +113,14 @@ class Trample extends AbstractDynamicCard {
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
-            upgradeMagicNumber(1);
-            upgradeDamage(2);
+            upgradeMagicNumber(MAGIC_PLUS_UPGRADE);
             initializeDescription();
         }
     }
 
-    public Trample() {
-        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
-        baseDamage = DAMAGE;
-        this.baseMagicNumber = MAGICNUMBER;
-        this.magicNumber = MAGICNUMBER;
-    }
+
+    // Choice Functionality //
+    //////////////////////////
 
     // Adds the card to your hand when you select it as your choice
     public void onChoseThisOption() {
@@ -132,21 +129,22 @@ class Trample extends AbstractDynamicCard {
         AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(makeCopy(), true));
     }
 
-    public AbstractCard makeCopy(){
-        AbstractCard card = new Trample();
-        if(this.upgraded)
+    public AbstractCard makeCopy() {
+        AbstractCard card = new LightPowerPower();
+        if (this.upgraded)
             card.upgrade();
         return card;
     }
 }
 
 
-class Weakness extends AbstractDynamicCard {
+class DarkPowerPower extends AbstractDynamicCard {
 
     // TEXT DECLARATION
 
-    public static final String ID = DefaultMod.makeID(Weakness.class.getSimpleName());
-    public static final String IMG = makeCardPath("Weakness.png");
+    public static final String ID = DefaultMod.makeID(DarkPowerPower.class.getSimpleName());
+    public static final String IMG = makeCardPath("DarkPowerPower.png"); //Default IMG
+    // Use if you have a png for this card //public static final String IMG = makeCardPath("DarkPower.png");
 
     // /TEXT DECLARATION/
 
@@ -154,23 +152,26 @@ class Weakness extends AbstractDynamicCard {
     // STAT DECLARATION
 
     private static final CardRarity RARITY = CardRarity.SPECIAL;
-    private static final CardTarget TARGET = CardTarget.ENEMY;
-    private static final CardType TYPE = CardType.ATTACK;
+    private static final CardTarget TARGET = CardTarget.SELF;
+    private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = TheDefault.Enums.COLOR_BLACK;
 
-    private static final int COST = 0;
-    private static final int MAGICNUMBER = 2;
-    private static final int DAMAGE = 4;
-
+    private static final int COST = 1;
+    private static final int MAGIC = 2;
+    private static final int MAGIC_PLUS_UPGRADE = 1;
 
     // /STAT DECLARATION/
 
+    public DarkPowerPower() {
+        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
+        magicNumber = baseMagicNumber = MAGIC;
+    }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(m, p, new WeakPower(m, this.magicNumber, false), this.magicNumber));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player,
+                new DarkPower(AbstractDungeon.player, AbstractDungeon.player, magicNumber), magicNumber));
     }
 
     // Upgraded stats.
@@ -178,20 +179,17 @@ class Weakness extends AbstractDynamicCard {
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
-            upgradeMagicNumber(1);
-            upgradeDamage(2);
+            upgradeMagicNumber(MAGIC_PLUS_UPGRADE);
             initializeDescription();
         }
     }
 
-    public Weakness() {
-        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
-        baseDamage = DAMAGE;
-        this.baseMagicNumber = MAGICNUMBER;
-        this.magicNumber = MAGICNUMBER;
-    }
+
+    // Choice Functionality //
+    //////////////////////////
 
     // Adds the card to your hand when you select it as your choice
+    @Override
     public void onChoseThisOption() {
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player,
                 new DarkPower(AbstractDungeon.player, AbstractDungeon.player, 1), 1));
@@ -199,8 +197,8 @@ class Weakness extends AbstractDynamicCard {
     }
 
     public AbstractCard makeCopy() {
-        AbstractCard card = new Weakness();
-        if(this.upgraded)
+        AbstractCard card = new DarkPowerPower();
+        if (this.upgraded)
             card.upgrade();
         return card;
     }
@@ -208,16 +206,16 @@ class Weakness extends AbstractDynamicCard {
 
 /* localization/card text template, goes in Card-Strings.json
 
-  "testMod:TrampleWeakness": {
-    "NAME": "Trample Weakness",
-    "DESCRIPTION": "Choose  [#fae9e8]Trample[] or [#8f918e]Weakness[]."
+  "testMod:LightDarkPower": {
+    "NAME": "LightDarkPower",
+    "DESCRIPTION": "Choose  [#f2f2f2]LightPower[] or [#a6a6a6]DarkPower[]."
   },
-  "testMod:Trample": {
-    "NAME": "Trample",
-    "DESCRIPTION": "Deal !D! Damage and apply !M! Vulnerable."
+  "testMod:LightPower": {
+    "NAME": "LightPowerPower",
+    "DESCRIPTION": "Deal !D! Damage."
   },
-  "testMod:Weakness": {
-    "NAME": "Weakness",
-    "DESCRIPTION": "Deal !D! Damage and apply !M! Weak.
+  "testMod:DarkPower": {
+    "NAME": "DarkPowerPower",
+    "DESCRIPTION": "Gain !B! Block."
   },
  */

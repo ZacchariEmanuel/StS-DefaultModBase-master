@@ -126,7 +126,12 @@ class Fight extends AbstractDynamicCard {
         AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(makeCopy(), true));
     }
 
-    public AbstractCard makeCopy(){ return new Fight(); }
+    public AbstractCard makeCopy(){
+        AbstractCard card =  new Fight();
+        if(this.upgraded)
+            card.upgrade();
+        return card;
+    }
 }
 
 
@@ -184,7 +189,10 @@ class Flight extends AbstractDynamicCard {
     }
 
     public AbstractCard makeCopy() {
-        return new Flight();
+        AbstractCard card =  new Flight();
+        if(this.upgraded)
+            card.upgrade();
+        return card;
     }
 }
 

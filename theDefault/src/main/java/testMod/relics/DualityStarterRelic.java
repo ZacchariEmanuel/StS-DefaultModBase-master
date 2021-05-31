@@ -5,8 +5,11 @@ import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
+import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import testMod.DefaultMod;
 import testMod.powers.DarkPower;
@@ -33,18 +36,16 @@ public class DualityStarterRelic extends CustomRelic {
     }
 
     private int getLightCount(){
-        if(!AbstractDungeon.player.hasPower(LightPower.POWER_ID))
+        if(AbstractDungeon.player == null || !AbstractDungeon.player.hasPower(LightPower.POWER_ID))
             return 0;
         else
             return AbstractDungeon.player.getPower(LightPower.POWER_ID).amount;
-
     }
     private int getDarkCount(){
-        if(!AbstractDungeon.player.hasPower(DarkPower.POWER_ID))
+        if(AbstractDungeon.player == null || !AbstractDungeon.player.hasPower(DarkPower.POWER_ID))
             return 0;
         else
             return AbstractDungeon.player.getPower(DarkPower.POWER_ID).amount;
-
     }
 
     @Override
@@ -55,18 +56,28 @@ public class DualityStarterRelic extends CustomRelic {
             this.addToBot(new DamageAllEnemiesAction((AbstractCreature)null, DamageInfo.createDamageMatrix(getLightCount(), true), DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
             //this.stopPulse();
         }
-        if(getDarkCount() > 0) {
+
+        //Block for Dark at end of turn
+        /*if(getDarkCount() > 0) {
             this.addToBot(new GainBlockAction(AbstractDungeon.player, AbstractDungeon.player, getDarkCount()));
+        }*/
+    }
+
+    //Heal for Dark at end of battle
+    @Override
+    public void onVictory() {
+        this.flash();
+        this.addToTop(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+        AbstractPlayer p = AbstractDungeon.player;
+        if (p.currentHealth > 0) {
+            p.heal(getDarkCount());
         }
     }
 
     // Description
     @Override
     public String getUpdatedDescription() {
-        if(AbstractDungeon.isPlayerInDungeon())
-            return DESCRIPTIONS[0] + getLightCount() + DESCRIPTIONS[1] + getDarkCount() + DESCRIPTIONS[2];
-        else
-            return DESCRIPTIONS[0] + " " + DESCRIPTIONS[1] + " " + DESCRIPTIONS[2];
+            return String.format(DESCRIPTIONS[0], getLightCount(), getDarkCount());
     }
 
 }
