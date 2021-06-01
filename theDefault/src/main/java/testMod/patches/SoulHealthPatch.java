@@ -1,11 +1,12 @@
 package testMod.patches;
-
+import testMod.util.ModUtil;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -16,7 +17,6 @@ import javassist.CtBehavior;
 import javassist.expr.ExprEditor;
 import javassist.expr.MethodCall;
 
-
 import java.util.ArrayList;
 
 @SpirePatch(
@@ -25,7 +25,7 @@ import java.util.ArrayList;
 )
 public class SoulHealthPatch
 {
-    public static SpireField<Integer> SoulHealth = new SpireField<>(() -> 5);
+    public static SpireField<Integer> SoulHealth = new SpireField<>(() -> 0);
     public static final SpireField<Color> SoulHealthColor = new SpireField<>(() -> Color.valueOf("9b27e3"));
 }
 
@@ -46,7 +46,7 @@ class SoulHealthRenderTextPatch{
                                 "{ if(!this.isPlayer) $_ = $proceed($$); "+     //If the AbstractCreature is not the player, then leave the health bar text as is
                                 "else{"+    //If the AbstractCreature IS the player, then we edit the function
                                 "$3 = this.currentHealth + \"[#"+   //Change the third argument of the function to the players health
-                                "\"+testMod.patches.SoulHealthPatch.SoulHealthColor.get(com.megacrit.cardcrawl.dungeons.AbstractDungeon.player).toString().substring(0,6)+\""+ //Set the color (ignoring the last alpha bits)
+                                "\"+testMod.util.ModUtil.COLORS.SOUL_HEAL.toString().substring(0,6)+\""+ //Set the color (ignoring the last alpha bits)
                                 "\"+"+
                                 "Integer.toHexString(Math.max(0, Math.min(255, (int)(this.healthHideTimer * 0x100))))" //Set alpha bits relative to healthHideTimer
                                 +"+\"](+\" + testMod.patches.SoulHealthPatch.SoulHealth.get(com.megacrit.cardcrawl.dungeons.AbstractDungeon.player) + \")[]/\" + this.maxHealth;" //finish with the soul health text then right the rest of the health text normally
@@ -107,6 +107,44 @@ class SoulHealthRenderPatch{
             // the LineFinder will search for all the prerequisites in order before it will match the finalMatcher -
             // since we didn't specify any prerequisites here, the LineFinder will simply find the first expression
             // that matches the finalMatcher.
+            int[] results = LineFinder.findInOrder(ctMethodToPatch, initialMatchers, finalMatcher);
+            return results;
+        }
+    }
+}
+
+@SpirePatch(
+        clz = AbstractPlayer.class,
+        method = "damage"
+)
+class SoulHealthDamagePatch{
+    @SpireInsertPatch(
+            locator = Locator.class,
+            localvars = {"damageAmount"}
+    )
+    public static void Insert(AbstractPlayer __instance, DamageInfo info, int damageAmount) {
+        int Soulhealth = SoulHealthPatch.SoulHealth.get(__instance);
+
+        if (damageAmount > Soulhealth){
+            __instance.currentHealth += Soulhealth;
+            Soulhealth = 0;
+        }else{
+            __instance.currentHealth += damageAmount;
+            Soulhealth -= damageAmount;
+        }
+        SoulHealthPatch.SoulHealth.set(__instance,Soulhealth);
+    }
+
+    private static class Locator extends SpireInsertLocator {
+
+        public int[] Locate(CtBehavior ctMethodToPatch) throws CannotCompileException, PatchingException {
+
+            Matcher firstMatcher = new  Matcher.FieldAccessMatcher(AbstractPlayer.class,"currentHealth");
+            Matcher finalMatcher = new  Matcher.FieldAccessMatcher(AbstractPlayer.class,"currentHealth");
+
+            ArrayList<Matcher> initialMatchers = new ArrayList<Matcher>();
+            initialMatchers.add(firstMatcher);
+
             int[] results = LineFinder.findInOrder(ctMethodToPatch, initialMatchers, finalMatcher);
             return results;
         }

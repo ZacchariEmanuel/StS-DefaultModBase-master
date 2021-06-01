@@ -1,4 +1,8 @@
 {
+  "testMod:SoulStrike": {
+    "NAME": "Soul Strike",
+    "DESCRIPTION": "Deal !D! damage. NL [#fae9e8]Soul Heal[] 4. "
+  },
   "testMod:PurgeTheSinful": {
     "NAME": "Purge the Sinful",
     "DESCRIPTION": "Deal !D! damage. NL If Fatal, gain 1 [#fae9e8]Light[] permanently. Exhaust. "
