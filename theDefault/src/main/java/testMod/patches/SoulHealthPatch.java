@@ -1,4 +1,7 @@
 package testMod.patches;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import testMod.powers.DarkPower;
+import testMod.powers.LightPower;
 import testMod.util.ModUtil;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -40,10 +43,12 @@ class SoulHealthRenderTextPatch{
         return new ExprEditor() {
                 public void edit(MethodCall m) throws CannotCompileException
                 {
+
                     if (m.getClassName().equals("com.megacrit.cardcrawl.helpers.FontHelper") //Search for this class being called
                             && m.getMethodName().equals("renderFontCentered"))  //Search for this method of that class being called
                         m.replace(
                                 "{ if(!this.isPlayer) $_ = $proceed($$); "+     //If the AbstractCreature is not the player, then leave the health bar text as is
+                                "else if(testMod.util.ModUtil.isNoSoulHealth()){ $_ = $proceed($$); }"+
                                 "else{"+    //If the AbstractCreature IS the player, then we edit the function
                                 "$3 = this.currentHealth + \"[#"+   //Change the third argument of the function to the players health
                                 "\"+testMod.util.ModUtil.COLORS.SOUL_HEAL.toString().substring(0,6)+\""+ //Set the color (ignoring the last alpha bits)
@@ -148,5 +153,32 @@ class SoulHealthDamagePatch{
             int[] results = LineFinder.findInOrder(ctMethodToPatch, initialMatchers, finalMatcher);
             return results;
         }
+    }
+}
+
+@SpirePatch(
+        clz = AbstractPlayer.class,
+        method = "onVictory"
+
+)
+class RemoveSoulHealthPostCombatPatch{
+    @SpirePostfixPatch
+    public static void RemoveSoulHealthPostCombat(AbstractPlayer __instance)
+    {
+        SoulHealthPatch.SoulHealth.set(__instance,0);
+    }
+}
+
+@SpirePatch(
+        clz = AbstractPlayer.class,
+        method = "heal"
+
+)
+class PreventSoulHealthOverhealPatch{
+    @SpirePostfixPatch
+    public static void PreventSoulHealthOverheal(AbstractPlayer __instance)
+    {
+        if(__instance.currentHealth + SoulHealthPatch.SoulHealth.get(__instance) > __instance.maxHealth)
+            SoulHealthPatch.SoulHealth.set(__instance,__instance.maxHealth - __instance.currentHealth);
     }
 }

@@ -27,14 +27,14 @@ public class LightDarkPatch
 )
 class LightDarkCombatStartPatch{
     @SpirePostfixPatch
-    public static void ApplyInitialLightDark()
+    public static void ApplyInitialLightDark(AbstractPlayer __instance)
     {
-        int initialLight = LightDarkPatch.InitialLightAmount.get(AbstractDungeon.player);
-        int initialDark = LightDarkPatch.InitialDarkAmount.get(AbstractDungeon.player);
+        int initialLight = LightDarkPatch.InitialLightAmount.get(__instance);
+        int initialDark = LightDarkPatch.InitialDarkAmount.get(__instance);
             if(initialLight > 0)
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new LightPower(AbstractDungeon.player, AbstractDungeon.player, initialLight), initialLight));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(__instance, __instance, new LightPower(__instance, __instance, initialLight), initialLight));
             if(initialDark > 0)
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new DarkPower(AbstractDungeon.player, AbstractDungeon.player, initialDark), initialDark));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(__instance, __instance, new DarkPower(__instance, __instance, initialDark), initialDark));
 
     }
 }

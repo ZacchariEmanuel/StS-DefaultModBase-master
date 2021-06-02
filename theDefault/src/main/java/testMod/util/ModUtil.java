@@ -1,6 +1,7 @@
 package testMod.util;
 
 import com.badlogic.gdx.graphics.Color;
+import com.evacipated.cardcrawl.modthespire.lib.SpireField;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
@@ -19,6 +20,10 @@ public class ModUtil {
         public static final Color SOUL_HEAL = Color.valueOf("9b27e3");
         public static final Color LIGHT = Color.valueOf("fae9e8");
         public static final Color DARK = Color.valueOf("8f918e");
+    }
+    public static boolean isNoSoulHealth(){
+        //Needed to avoid Type "'java/lang/Object' (current frame, stack[0]) is not assignable to integer" in SoulHealthPatch.SoulHealthRenderTextPatch
+        return SoulHealthPatch.SoulHealth.get(AbstractDungeon.player) == 0;
     }
     public static void SoulHeal(int healAmount) {
         if (Settings.isEndless && AbstractDungeon.player.hasBlight("FullBelly")) {
