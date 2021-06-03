@@ -1,4 +1,8 @@
 {
+"testMod:SmokePower": {
+        "NAME": "Smoke",
+        "DESCRIPTIONS": ["Dodge attacks that deal ", " or less damage until your next turn."]
+},
 "testMod:LightPower": {
         "NAME": "Light",
         "DESCRIPTIONS": ["The number of times you chose Light ( #b", " time.)", " times.)"]

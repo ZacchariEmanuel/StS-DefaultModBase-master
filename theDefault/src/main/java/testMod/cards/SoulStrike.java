@@ -35,7 +35,7 @@ public class SoulStrike extends AbstractDynamicCard {
 
     private static final int DAMAGE = 6;
     private static final int UPGRADE_PLUS_DMG = 1;
-    private static final int MAGIC = 4;
+    private static final int MAGIC = 2;
     private static final int UPGRADE_PLUS_MAGIC = 1;
 
     // /STAT DECLARATION/

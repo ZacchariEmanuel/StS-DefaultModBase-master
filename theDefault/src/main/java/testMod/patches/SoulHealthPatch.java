@@ -1,5 +1,7 @@
 package testMod.patches;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.core.FontInfo;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import testMod.powers.DarkPower;
 import testMod.powers.LightPower;
 import testMod.util.ModUtil;
@@ -51,7 +53,7 @@ class SoulHealthRenderTextPatch{
                                 "else if(testMod.util.ModUtil.isNoSoulHealth()){ $_ = $proceed($$); }"+
                                 "else{"+    //If the AbstractCreature IS the player, then we edit the function
                                 "$3 = this.currentHealth + \"[#"+   //Change the third argument of the function to the players health
-                                "\"+testMod.util.ModUtil.COLORS.SOUL_HEAL.toString().substring(0,6)+\""+ //Set the color (ignoring the last alpha bits)
+                                "\"+testMod.util.ModUtil.COLORS.DARK.toString().substring(0,6)+\""+ //Set the color (ignoring the last alpha bits)
                                 "\"+"+
                                 "Integer.toHexString(Math.max(0, Math.min(255, (int)(this.healthHideTimer * 0x100))))" //Set alpha bits relative to healthHideTimer
                                 +"+\"](+\" + testMod.patches.SoulHealthPatch.SoulHealth.get(com.megacrit.cardcrawl.dungeons.AbstractDungeon.player) + \")[]/\" + this.maxHealth;" //finish with the soul health text then right the rest of the health text normally

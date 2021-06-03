@@ -20,6 +20,7 @@ public class ModUtil {
         public static final Color SOUL_HEAL = Color.valueOf("9b27e3");
         public static final Color LIGHT = Color.valueOf("fae9e8");
         public static final Color DARK = Color.valueOf("8f918e");
+        public static final Color SMOKE_WORD = Color.valueOf("8f918e");
     }
     public static boolean isNoSoulHealth(){
         //Needed to avoid Type "'java/lang/Object' (current frame, stack[0]) is not assignable to integer" in SoulHealthPatch.SoulHealthRenderTextPatch
