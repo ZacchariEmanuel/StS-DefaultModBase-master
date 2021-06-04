@@ -36,7 +36,7 @@ public class SmokeScreen extends AbstractDynamicCard {
     private static final int UPGRADED_COST = 2;
 
     private static final int MAGICNUMBER = 7;
-    private static final int UPGRADE_PLUS_MAGICNUMBER = 10;
+    private static final int UPGRADE_PLUS_MAGICNUMBER = 2;
 
     // /STAT DECLARATION/
 
@@ -44,7 +44,7 @@ public class SmokeScreen extends AbstractDynamicCard {
     public SmokeScreen() {
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
         magicNumber = baseMagicNumber = MAGICNUMBER;
-        this.tags.add(CardTags.STARTER_DEFEND);
+        this.exhaustOnUseOnce = true;
     }
 
 

@@ -1,7 +1,7 @@
 {
 "testMod:SmokePower": {
         "NAME": "Smoke",
-        "DESCRIPTIONS": ["Dodge attacks that deal ", " or less damage until your next turn."]
+        "DESCRIPTIONS": ["Until your next turn, dodge attacks that deal %d or less damage."]
 },
 "testMod:LightPower": {
         "NAME": "Light",

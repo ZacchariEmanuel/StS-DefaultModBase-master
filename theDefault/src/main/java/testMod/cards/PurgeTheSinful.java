@@ -25,8 +25,7 @@ public class PurgeTheSinful extends AbstractDynamicCard {
     // TEXT DECLARATION
 
     public static final String ID = DefaultMod.makeID(PurgeTheSinful.class.getSimpleName());
-    public static final String IMG = makeCardPath("Attack.png"); //Default IMG
-    // Use if you have a png for this card //public static final String IMG = makeCardPath("PurgeTheSinful.png");
+    public static final String IMG = makeCardPath("PurgeTheSinful.png"); //Default IMG
 
     // /TEXT DECLARATION/
 
@@ -59,7 +58,7 @@ public class PurgeTheSinful extends AbstractDynamicCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         if(m != null)
-        this.addToBot(new VFXAction(new ViceCrushEffect(m.hb.cX, m.hb.cY - 40.0F * Settings.scale),0.1F));
+            this.addToBot(new VFXAction(new ViceCrushEffect(m.hb.cX, m.hb.cY - 40.0F * Settings.scale),0.1F));
         this.addToBot(new LightDarkConsumeAction(m, new DamageInfo(p, damage, damageTypeForTurn),1,0));
     }
 

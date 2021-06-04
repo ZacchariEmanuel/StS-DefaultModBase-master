@@ -5,6 +5,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.PlayTopCardAction;
+import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -27,7 +29,7 @@ public class SmokePower extends AbstractPower implements CloneablePowerInterface
 
     public static final String POWER_ID = DefaultMod.makeID(SmokePower.class.getSimpleName());
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
-    // static final UIStrings PlayerUIStrings = CardCrawlGame.languagePack.getUIString("AbstractPlayer");
+    static final UIStrings PlayerUIStrings = CardCrawlGame.languagePack.getUIString("AbstractPlayer");
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
@@ -57,12 +59,7 @@ public class SmokePower extends AbstractPower implements CloneablePowerInterface
     // Update the description when you apply this power. (i.e. add or remove an "s" in keyword(s))
     @Override
     public void updateDescription() {
-        //if (amount == 1) {
-            description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1];
-        //}
-        /*else if (amount > 1) {
-            description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[2];
-        }*/
+            description = String.format(DESCRIPTIONS[0],amount) ;
     }
 
     @Override
@@ -70,20 +67,21 @@ public class SmokePower extends AbstractPower implements CloneablePowerInterface
         return new SmokePower(owner, source, amount);
     }
 
-    @Override
-    public int onAttackedToChangeDamage(DamageInfo info, int damageAmount) {
-        if(damageAmount <= this.amount) {
+
+
+    public int onAttacked(DamageInfo info, int damageAmount) {
+        if (damageAmount <= this.amount) {
             damageAmount = 0;
             this.flash();
-            AbstractDungeon.effectList.add(new DodgedWordEffect(AbstractDungeon.player, AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY, "Dodged"));//PlayerUIStrings.TEXT[0]));
-            AbstractDungeon.effectList.add(new SmokePuffEffect(AbstractDungeon.player.drawX,AbstractDungeon.player.drawY));
-            info.output = 0;
+            AbstractDungeon.effectList.add(new DodgedWordEffect(AbstractDungeon.player, AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY, PlayerUIStrings.TEXT[0]));
+            //AbstractDungeon.effectList.add(new SmokePuffEffect(AbstractDungeon.player.drawX,AbstractDungeon.player.drawY));
         }
         return damageAmount;
     }
 
     @Override
     public void atStartOfTurn() {
+        addToBot((AbstractGameAction)new RemoveSpecificPowerAction(this.owner, this.owner, this.ID));
         this.amount = 0;
     }
 

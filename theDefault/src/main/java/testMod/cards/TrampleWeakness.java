@@ -158,7 +158,7 @@ class Weakness extends AbstractDynamicCard {
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = TheDefault.Enums.COLOR_BLACK;
 
-    private static final int COST = 0;
+    private static final int COST = 1;
     private static final int MAGICNUMBER = 2;
     private static final int DAMAGE = 4;
 

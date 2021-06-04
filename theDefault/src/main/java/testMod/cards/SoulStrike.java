@@ -18,7 +18,7 @@ public class SoulStrike extends AbstractDynamicCard {
     // TEXT DECLARATION
 
     public static final String ID = DefaultMod.makeID(SoulStrike.class.getSimpleName());
-    public static final String IMG = makeCardPath("Strike.png");
+    public static final String IMG = makeCardPath("SoulStrike.png");
 
     // /TEXT DECLARATION/
 
