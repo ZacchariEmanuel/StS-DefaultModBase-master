@@ -1,7 +1,15 @@
 {
+  "testMod:Masochism": {
+    "NAME": "Masochism",
+    "DESCRIPTION": "Lose !M! HP. NL [#fae9e8]Soul Heal[] !B!. NL Exhaust."
+  },
+  "testMod:Flagellation": {
+    "NAME": "Flagellation",
+    "DESCRIPTION": "Lose !M! HP. NL Deal !D! damage."
+  },
   "testMod:VampireBat": {
     "NAME": "Vampire Bat",
-    "DESCRIPTION": "Deal !D! damage. NL [#fae9e8]Soul Heal[] !M!. NL NL Draw Vampire Bat from your draw pile whenever you heal."
+    "DESCRIPTION": "Deal !D! damage. NL [#fae9e8]Soul Heal[] !M!. NL Draw Vampire Bat from your draw pile whenever you heal."
   },
   "testMod:Fog": {
     "NAME": "Fog",
@@ -41,7 +49,7 @@
   },
   "testMod:Parcel": {
     "NAME": "Parcel",
-    "DESCRIPTION": "Deal !D! Damage. NL Draw !M! card.",
+    "DESCRIPTION": "Deal !D! damage. NL Draw !M! card.",
     "UPGRADE_DESCRIPTION": "Deal !D! damage. NL Draw !M! cards."
   },
   "testMod:FightOrFlight": {
@@ -50,7 +58,7 @@
   },
   "testMod:Fight": {
     "NAME": "Fight",
-    "DESCRIPTION": "Deal !D! Damage."
+    "DESCRIPTION": "Deal !D! damage."
   },
   "testMod:Flight": {
     "NAME": "Flight",
@@ -62,11 +70,11 @@
   },
   "testMod:Trample": {
     "NAME": "Trample",
-    "DESCRIPTION": "Deal !D! Damage. NL Apply !M! Vulnerable."
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Vulnerable."
   },
   "testMod:Weakness": {
     "NAME": "Weakness",
-    "DESCRIPTION": "Deal !D! Damage. NL Apply !M! Weak."
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Weak."
   },
   "testMod:TestStrike": {
     "NAME": "Strike",

@@ -1,5 +1,6 @@
 package testMod.cards;
 
+import basemod.AutoAdd;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -12,6 +13,7 @@ import testMod.powers.CommonPower;
 
 import static testMod.DefaultMod.makeCardPath;
 
+@AutoAdd.Ignore
 public class DefaultCommonPower extends AbstractDynamicCard {
 
     /*
