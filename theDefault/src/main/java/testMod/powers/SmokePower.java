@@ -69,7 +69,7 @@ public class SmokePower extends AbstractPower implements CloneablePowerInterface
 
 
 
-    public int onAttacked(DamageInfo info, int damageAmount) {
+    /*public int onAttacked(DamageInfo info, int damageAmount) {
         if (damageAmount <= this.amount) {
             damageAmount = 0;
             this.flash();
@@ -77,7 +77,7 @@ public class SmokePower extends AbstractPower implements CloneablePowerInterface
             //AbstractDungeon.effectList.add(new SmokePuffEffect(AbstractDungeon.player.drawX,AbstractDungeon.player.drawY));
         }
         return damageAmount;
-    }
+    }*/
 
     @Override
     public void atStartOfTurn() {

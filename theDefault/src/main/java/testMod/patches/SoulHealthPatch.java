@@ -53,9 +53,9 @@ class SoulHealthRenderTextPatch{
                                 "else if(testMod.util.ModUtil.isNoSoulHealth()){ $_ = $proceed($$); }"+
                                 "else{"+    //If the AbstractCreature IS the player, then we edit the function
                                 "$3 = this.currentHealth + \"[#"+   //Change the third argument of the function to the players health
-                                "\"+testMod.util.ModUtil.COLORS.DARK.toString().substring(0,6)+\""+ //Set the color (ignoring the last alpha bits)
+                                "\"+testMod.util.ModUtil.COLORS.SOUL_HEAL_TEXT.toString().substring(0,6)+\""+ //Set the color (ignoring the last alpha bits)
                                 "\"+"+
-                                "Integer.toHexString(Math.max(0, Math.min(255, (int)(this.healthHideTimer * 0x100))))" //Set alpha bits relative to healthHideTimer
+                                "Integer.toHexString(Math.max(0, Math.min(255, (int)(this.healthHideTimer * 179))))" //Set alpha bits relative to healthHideTimer
                                 +"+\"](+\" + testMod.patches.SoulHealthPatch.SoulHealth.get(com.megacrit.cardcrawl.dungeons.AbstractDungeon.player) + \")[]/\" + this.maxHealth;" //finish with the soul health text then right the rest of the health text normally
                                 +" $_ = $proceed($$); }}");
 
@@ -76,17 +76,21 @@ class SoulHealthRenderPatch{
         if(__instance.isPlayer) {
             Color originalColor = sb.getColor(); //Store original color
 
-            sb.setColor(SoulHealthPatch.SoulHealthColor.get(AbstractDungeon.player));
+            if(__instance.hbAlpha < 1)
+                sb.setColor(Color.valueOf("00000000"));
+            else
+                sb.setColor(ModUtil.COLORS.SOUL_HEAL);
+
             float soulHealthWidth = __instance.hb.width * (__instance.currentHealth + SoulHealthPatch.SoulHealth.get(AbstractDungeon.player)) / __instance.maxHealth;
             if (SoulHealthPatch.SoulHealth.get(AbstractDungeon.player) > 0) {
                 sb.draw(ImageMaster.HEALTH_BAR_L, x - ___HEALTH_BAR_HEIGHT, y + ___HEALTH_BAR_OFFSET_Y, ___HEALTH_BAR_HEIGHT, ___HEALTH_BAR_HEIGHT);
             }
+
             sb.draw(ImageMaster.HEALTH_BAR_B, x, y + ___HEALTH_BAR_OFFSET_Y, soulHealthWidth, ___HEALTH_BAR_HEIGHT);
             sb.draw(ImageMaster.HEALTH_BAR_R, x + soulHealthWidth, y + ___HEALTH_BAR_OFFSET_Y, ___HEALTH_BAR_HEIGHT, ___HEALTH_BAR_HEIGHT);
 
-            //Set healthbar color back to what it was before this patch
 
-            sb.setColor(originalColor);
+            sb.setColor(originalColor);//Set healthbar color back to what it was before this patch
         }
     }
 

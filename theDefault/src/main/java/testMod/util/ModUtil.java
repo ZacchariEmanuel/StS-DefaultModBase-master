@@ -1,16 +1,15 @@
 package testMod.util;
 
 import com.badlogic.gdx.graphics.Color;
-import com.evacipated.cardcrawl.modthespire.lib.SpireField;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.ui.panels.TopPanel;
-import com.megacrit.cardcrawl.vfx.combat.HealEffect;
-import com.megacrit.cardcrawl.vfx.combat.HealPanelEffect;
-import testMod.ColoredHealEffect;
-import testMod.ColoredHealPanelEffect;
+import testMod.OnHeal;
+import testMod.effects.ColoredHealEffect;
+import testMod.effects.ColoredHealPanelEffect;
 import testMod.patches.SoulHealthPatch;
 
 import java.lang.reflect.Field;
@@ -18,9 +17,10 @@ import java.lang.reflect.Field;
 public class ModUtil {
     public static class COLORS{
         public static final Color SOUL_HEAL = Color.valueOf("9b27e3");
+        public static final Color SOUL_HEAL_TEXT = Color.valueOf("461266");
         public static final Color LIGHT = Color.valueOf("fae9e8");
         public static final Color DARK = Color.valueOf("8f918e");
-        public static final Color SMOKE_WORD = Color.valueOf("8f918e");
+        public static final Color SMOKE_WORD = Color.valueOf("404140");
     }
     public static boolean isNoSoulHealth(){
         //Needed to avoid Type "'java/lang/Object' (current frame, stack[0]) is not assignable to integer" in SoulHealthPatch.SoulHealthRenderTextPatch
@@ -46,6 +46,22 @@ public class ModUtil {
 
         for (AbstractPower p : AbstractDungeon.player.powers) {
             healAmount = p.onHeal(healAmount);
+        }
+
+        for (AbstractCard c : AbstractDungeon.player.drawPile.group) {
+            if(c instanceof OnHeal){
+                ((OnHeal) c).triggerOnHeal(healAmount);
+            }
+        }
+        for (AbstractCard c : AbstractDungeon.player.discardPile.group) {
+            if(c instanceof OnHeal){
+                ((OnHeal) c).triggerOnHeal(healAmount);
+            }
+        }
+        for (AbstractCard c : AbstractDungeon.player.exhaustPile.group) {
+            if(c instanceof OnHeal){
+                ((OnHeal) c).triggerOnHeal(healAmount);
+            }
         }
 
         int SoulHealth = SoulHealthPatch.SoulHealth.get(AbstractDungeon.player) + healAmount;

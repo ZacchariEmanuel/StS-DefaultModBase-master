@@ -1,4 +1,8 @@
 {
+  "testMod:VampireBat": {
+    "NAME": "Vampire Bat",
+    "DESCRIPTION": "Deal !D! damage. NL [#fae9e8]Soul Heal[] !M!. NL NL Draw Vampire Bat from your draw pile whenever you heal."
+  },
   "testMod:Fog": {
     "NAME": "Fog",
     "DESCRIPTION": "Gain !M! Smoke X Times."

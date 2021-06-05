@@ -20,7 +20,7 @@ public class ${NAME} extends AbstractDynamicCard {
 
     // TEXT DECLARATION
 
-    public static final String ID = DefaultMod.makeID(NewCardTemplate.class.getSimpleName());
+    public static final String ID = DefaultMod.makeID(${NAME}.class.getSimpleName());
     public static final String IMG = makeCardPath("Attack.png"); //Default IMG
     // Use if you have a png for this card //public static final String IMG = makeCardPath("${NAME}.png");
 
@@ -48,7 +48,7 @@ public class ${NAME} extends AbstractDynamicCard {
     // /STAT DECLARATION/
 
 
-    public NewCardTemplate() {
+    public ${NAME}() {
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
         //damage = baseDamage = DAMAGE;
         //block = baseBlock = BLOCK;
