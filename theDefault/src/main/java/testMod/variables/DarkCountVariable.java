@@ -27,7 +27,7 @@ public class DarkCountVariable extends DynamicVariable
     @Override
     public boolean isModified(AbstractCard card)
     {
-        return card.isDamageModified;
+        return false;
     }
 
     // The value the variable should display.
@@ -56,6 +56,6 @@ public class DarkCountVariable extends DynamicVariable
     @Override
     public boolean upgraded(AbstractCard card)
     {
-        return card.upgradedDamage;
+        return false;
     }
 }

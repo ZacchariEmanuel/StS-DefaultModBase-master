@@ -25,7 +25,7 @@ public class LightCountVariable extends DynamicVariable
     @Override
     public boolean isModified(AbstractCard card)
     {
-        return card.isDamageModified;
+        return false;
     }
    
     // The value the variable should display.
@@ -49,11 +49,11 @@ public class LightCountVariable extends DynamicVariable
         else
             return AbstractDungeon.player.getPower(LightPower.POWER_ID).amount;
     }
-    
+
     // If the card has it's damage upgraded, this variable will glow green on the upgrade selection screen as well.
     @Override
     public boolean upgraded(AbstractCard card)
-    {               
-       return card.upgradedDamage;
+    {
+       return false;
     }
 }

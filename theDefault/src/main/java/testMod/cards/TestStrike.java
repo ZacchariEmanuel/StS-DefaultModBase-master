@@ -32,7 +32,7 @@ public class TestStrike extends AbstractDynamicCard {
     private static final int UPGRADED_COST = 1;
 
     private static final int DAMAGE = 6;
-    private static final int UPGRADE_PLUS_DMG = 1;
+    private static final int UPGRADE_PLUS_DMG = 3;
 
     // /STAT DECLARATION/
 

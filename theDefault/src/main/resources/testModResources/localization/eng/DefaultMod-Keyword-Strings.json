@@ -1,6 +1,17 @@
 [
   {
     "NAMES": [
+      "dark"
+    ],
+    "DESCRIPTION": "The number of times you chose the [#8f918e]Dark[] path."
+  },{
+  "NAMES": [
+    "light"
+  ],
+  "DESCRIPTION": "The number of times you chose the [#feffd9]Light[] path."
+},
+  {
+    "NAMES": [
       "keyword",
       "keywords"
     ],
@@ -16,5 +27,15 @@
       "multikeyword"
     ],
     "DESCRIPTION": "Make sure the first element in the NAMES is the same as your PROPER_NAME. The rest is to match keywords like the single word keyword."
+  },
+  {
+    "PROPER_NAME": "Soul Heal",
+    "NAMES": [
+      "Soul Heal",
+      "soul_health",
+      "soul_heal",
+      "soul_healed"
+    ],
+    "DESCRIPTION": "[#9b27e3]Soul Health[] is health that goes away at the end of combat"
   }
 ]

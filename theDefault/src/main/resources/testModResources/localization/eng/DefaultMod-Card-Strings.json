@@ -1,7 +1,29 @@
 {
+  "testMod:StrengthDexPower": {
+    "NAME": "Pain and Gain",
+    "DESCRIPTION": "Choose  [#feffd9]Pain[] or [#8f918e]Gain[]."
+  },
+  "testMod:StrengthPowerPower": {
+    "NAME": "Pain",
+    "DESCRIPTION": "Gain !M! Strength."
+  },
+  "testMod:DexPowerPower": {
+    "NAME": "Gain",
+    "DESCRIPTION": "Gain !M! Dexterity."
+  },
+  "testMod:DarkBlock": {
+    "NAME": "Dark Block",
+    "DESCRIPTION": "Gain testmod:Dark Block. NL (Gain !testMod:DARK_TIMES_MAGIC_PLUS_BLOCK! Block total.)",
+    "UPGRADE_DESCRIPTION": "Gain !M! times testmod:Dark Block. NL (Gain !testMod:DARK_TIMES_MAGIC_PLUS_BLOCK! Block total.)"
+  },
+  "testMod:LightAttack": {
+    "NAME": "Light Attack",
+    "DESCRIPTION": "Deal testmod:Light damage. NL (Deal !testMod:LIGHT_TIMES_MAGIC_PLUS_DAMAGE! damage total.)",
+    "UPGRADE_DESCRIPTION": "Deal !M! times testmod:Light damage. NL (Deal !testMod:LIGHT_TIMES_MAGIC_PLUS_DAMAGE! damage total.)"
+  },
   "testMod:Masochism": {
     "NAME": "Masochism",
-    "DESCRIPTION": "Lose !M! HP. NL [#fae9e8]Soul Heal[] !B!. NL Exhaust."
+    "DESCRIPTION": "Lose !M! HP. NL [#9b27e3]Soul Heal[] !B!. NL Exhaust."
   },
   "testMod:Flagellation": {
     "NAME": "Flagellation",
@@ -9,7 +31,7 @@
   },
   "testMod:VampireBat": {
     "NAME": "Vampire Bat",
-    "DESCRIPTION": "Deal !D! damage. NL [#fae9e8]Soul Heal[] !M!. NL Draw Vampire Bat from your draw pile whenever you heal."
+    "DESCRIPTION": "Deal !D! damage. NL [#9b27e3]Soul Heal[] !M!. NL Draw Vampire Bat from your draw pile whenever you heal."
   },
   "testMod:Fog": {
     "NAME": "Fog",
@@ -21,27 +43,27 @@
   },
   "testMod:SoulStrike": {
     "NAME": "Soul Strike",
-    "DESCRIPTION": "Deal !D! damage. NL [#fae9e8]Soul Heal[] !M!."
+    "DESCRIPTION": "Deal !D! damage. NL [#9b27e3]Soul Heal[] !M!."
   },
   "testMod:PurgeTheSinful": {
     "NAME": "Purge the Sinful",
-    "DESCRIPTION": "Deal !D! damage. NL If Fatal, gain 1 [#fae9e8]Light[] permanently. NL Exhaust."
+    "DESCRIPTION": "Deal !D! damage. NL If Fatal, gain 1 [#feffd9]testmod:Light[] permanently. NL Exhaust."
   },
   "testMod:LightDarkPower": {
     "NAME": "Light Dark Power",
-    "DESCRIPTION": "Choose  [#fae9e8]Light Power[] or [#8f918e]Dark Power[]."
+    "DESCRIPTION": "Choose  [#feffd9]Light Power[] or [#8f918e]Dark Power[]."
   },
   "testMod:LightPowerPower": {
     "NAME": "Light Power",
-    "DESCRIPTION": "Gain !M! [#fae9e8]Light[]."
+    "DESCRIPTION": "Gain !M! [#feffd9]testmod:Light[]."
   },
   "testMod:DarkPowerPower": {
     "NAME": "Dark Power",
-    "DESCRIPTION": "Gain !M! [#8f918e]Dark[]"
+    "DESCRIPTION": "Gain !M! [#8f918e]testmod:Dark[]"
   },
   "testMod:PartAndParcel": {
     "NAME": "PartAndParcel",
-    "DESCRIPTION": "Choose  [#fae9e8]Part[] or [#8f918e]Parcel[]."
+    "DESCRIPTION": "Choose  [#feffd9]Part[] or [#8f918e]Parcel[]."
   },
   "testMod:Part": {
     "NAME": "Part",
@@ -54,7 +76,7 @@
   },
   "testMod:FightOrFlight": {
     "NAME": "Fight Or Flight",
-    "DESCRIPTION": "Choose  [#fae9e8]Fight[] or [#8f918e]Flight[]."
+    "DESCRIPTION": "Choose  [#feffd9]Fight[] or [#8f918e]Flight[]."
   },
   "testMod:Fight": {
     "NAME": "Fight",
@@ -66,7 +88,7 @@
   },
   "testMod:TrampleWeakness": {
     "NAME": "Trample Weakness",
-    "DESCRIPTION": "Choose  [#fae9e8]Trample[] or [#8f918e]Weakness[]."
+    "DESCRIPTION": "Choose  [#feffd9]Trample[] or [#8f918e]Weakness[]."
   },
   "testMod:Trample": {
     "NAME": "Trample",

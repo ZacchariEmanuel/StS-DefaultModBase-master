@@ -21,9 +21,7 @@ import static testMod.DefaultMod.makeRelicPath;
 
 public class DualityStarterRelic extends CustomRelic {
 
-    /*
-     * https://github.com/daviscook477/BaseMod/wiki/Custom-Relics
-     */
+
 
     // ID, images, text.
     public static final String ID = DefaultMod.makeID(DualityStarterRelic.class.getSimpleName());

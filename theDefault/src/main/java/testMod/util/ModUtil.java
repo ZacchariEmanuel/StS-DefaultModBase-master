@@ -11,6 +11,8 @@ import testMod.OnHeal;
 import testMod.effects.ColoredHealEffect;
 import testMod.effects.ColoredHealPanelEffect;
 import testMod.patches.SoulHealthPatch;
+import testMod.powers.DarkPower;
+import testMod.powers.LightPower;
 
 import java.lang.reflect.Field;
 
@@ -18,7 +20,7 @@ public class ModUtil {
     public static class COLORS{
         public static final Color SOUL_HEAL = Color.valueOf("9b27e3");
         public static final Color SOUL_HEAL_TEXT = Color.valueOf("461266");
-        public static final Color LIGHT = Color.valueOf("fae9e8");
+        public static final Color LIGHT = Color.valueOf("feffd9");
         public static final Color DARK = Color.valueOf("8f918e");
         public static final Color SMOKE_WORD = Color.valueOf("404140");
     }
@@ -26,6 +28,20 @@ public class ModUtil {
         //Needed to avoid Type "'java/lang/Object' (current frame, stack[0]) is not assignable to integer" in SoulHealthPatch.SoulHealthRenderTextPatch
         return SoulHealthPatch.SoulHealth.get(AbstractDungeon.player) == 0;
     }
+
+    public static int getLightCount(){
+        if(AbstractDungeon.player == null || !AbstractDungeon.player.hasPower(LightPower.POWER_ID))
+            return 0;
+        else
+            return AbstractDungeon.player.getPower(LightPower.POWER_ID).amount;
+    }
+    public static int getDarkCount(){
+        if(AbstractDungeon.player == null || !AbstractDungeon.player.hasPower(DarkPower.POWER_ID))
+            return 0;
+        else
+            return AbstractDungeon.player.getPower(DarkPower.POWER_ID).amount;
+    }
+
     public static void SoulHeal(int healAmount) {
         if (Settings.isEndless && AbstractDungeon.player.hasBlight("FullBelly")) {
             healAmount /= 2;

@@ -23,6 +23,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import testMod.DefaultMod;
 import testMod.cards.*;
+import testMod.relics.DualityStarterRelic2;
 import testMod.relics.PlaceholderRelic;
 import testMod.relics.DualityStarterRelic;
 
@@ -185,7 +186,8 @@ public class TheDefault extends CustomPlayer {
         ArrayList<String> retVal = new ArrayList<>();
 
         //retVal.add(PlaceholderRelic.ID);
-        retVal.add(DualityStarterRelic.ID);
+        //retVal.add(DualityStarterRelic.ID);
+        retVal.add(DualityStarterRelic2.ID);
 
         // Mark relics as seen - makes it visible in the compendium immediately
         // If you don't have this it won't be visible in the compendium until you see them in game

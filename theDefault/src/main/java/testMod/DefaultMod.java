@@ -27,10 +27,7 @@ import testMod.potions.PlaceholderPotion;
 import testMod.relics.*;
 import testMod.util.IDCheckDontTouchPls;
 import testMod.util.TextureLoader;
-import testMod.variables.DarkCountVariable;
-import testMod.variables.DefaultCustomVariable;
-import testMod.variables.DefaultSecondMagicNumber;
-import testMod.variables.LightCountVariable;
+import testMod.variables.*;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -435,6 +432,7 @@ public class DefaultMod implements
 
         // This adds a character specific relic. Only when you play with the mentioned color, will you get this relic.
         BaseMod.addRelicToCustomPool(new DualityStarterRelic(), TheDefault.Enums.COLOR_GRAY);
+        BaseMod.addRelicToCustomPool(new DualityStarterRelic2(), TheDefault.Enums.COLOR_GRAY);
         BaseMod.addRelicToCustomPool(new PlaceholderRelic(), TheDefault.Enums.COLOR_GRAY);
         BaseMod.addRelicToCustomPool(new BottledPlaceholderRelic(), TheDefault.Enums.COLOR_GRAY);
         BaseMod.addRelicToCustomPool(new DefaultClickableRelic(), TheDefault.Enums.COLOR_GRAY);
@@ -464,7 +462,10 @@ public class DefaultMod implements
         // Add the Custom Dynamic variables
         BaseMod.addDynamicVariable(new DefaultCustomVariable());
         BaseMod.addDynamicVariable(new DefaultSecondMagicNumber());
+        BaseMod.addDynamicVariable(new LightCountVariable());
         BaseMod.addDynamicVariable(new DarkCountVariable());
+        BaseMod.addDynamicVariable(new LightTimesMagicPlusDamageVariable());
+        BaseMod.addDynamicVariable(new DarkTimesMagicPlusBlockVariable());
 
         logger.info("Adding cards");
         // Add the cards

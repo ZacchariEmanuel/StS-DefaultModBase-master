@@ -8,12 +8,12 @@ import testMod.powers.LightPower;
 
 import static testMod.DefaultMod.makeID;
 
-public class LightPlusAttackVariable extends DynamicVariable
+public class LightTimesMagicPlusDamageVariable extends DynamicVariable
 {
     @Override
     public String key()
     {
-        return makeID("LIGHT_PLUS_ATTACK");
+        return makeID("LIGHT_TIMES_MAGIC_PLUS_DAMAGE");
     }
 
     @Override
@@ -28,7 +28,7 @@ public class LightPlusAttackVariable extends DynamicVariable
         if(!AbstractDungeon.player.hasPower(LightPower.POWER_ID))
             return card.damage;
         else
-            return card.damage + AbstractDungeon.player.getPower(LightPower.POWER_ID).amount;
+            return card.damage + ((AbstractDungeon.player.getPower(LightPower.POWER_ID).amount) * card.magicNumber);
     }
     @Override
     public int baseValue(AbstractCard card)
@@ -36,7 +36,7 @@ public class LightPlusAttackVariable extends DynamicVariable
         if(!AbstractDungeon.player.hasPower(LightPower.POWER_ID))
             return card.baseDamage;
         else
-            return card.baseDamage + AbstractDungeon.player.getPower(LightPower.POWER_ID).amount;
+            return card.baseDamage + ((AbstractDungeon.player.getPower(LightPower.POWER_ID).amount) * card.baseMagicNumber);
     }
     @Override
     public boolean upgraded(AbstractCard card)
