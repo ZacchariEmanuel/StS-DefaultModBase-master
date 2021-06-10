@@ -16,16 +16,16 @@ import com.megacrit.cardcrawl.powers.VulnerablePower;
 import testMod.DefaultMod;
 import testMod.characters.TheDefault;
 import testMod.powers.SmokePower;
+import testMod.powers.ThrashingPower;
 
 import static testMod.DefaultMod.makeCardPath;
 
-public class ${NAME} extends AbstractDynamicCard {
+public class Thrashing extends AbstractDynamicCard {
 
     // TEXT DECLARATION
 
-    public static final String ID = DefaultMod.makeID(${NAME}.class.getSimpleName());
-    public static final String IMG = makeCardPath("Attack.png"); //Default IMG
-    // Use if you have a png for this card //public static final String IMG = makeCardPath("${NAME}.png");
+    public static final String ID = DefaultMod.makeID(Thrashing.class.getSimpleName());
+    public static final String IMG = makeCardPath("Thrashing.png");
 
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
@@ -35,30 +35,25 @@ public class ${NAME} extends AbstractDynamicCard {
 
     // STAT DECLARATION
 
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.RARE;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = TheDefault.Enums.COLOR_GRAY;
 
-    private static final int COST = ${COST};
-    //private static final int UPGRADED_COST = ${COST};
+    private static final int COST = 3;
+    private static final int UPGRADED_COST = 2;
 
-    //private static final int DAMAGE = ${DAMAGE};
-    //private static final int UPGRADE_PLUS_DMG = 0;
-    //private static final int BLOCK = ${BLOCK};
-    //private static final int UPGRADE_PLUS_BLOCK = 0;
-    //private static final int MAGIC = ${MAGIC};
-    //private static final int UPGRADE_PLUS_MAGIC = 0;
+
+    private static final int MAGIC = 1;
+    private static final int UPGRADE_PLUS_MAGIC = 0;
 
 
     // /STAT DECLARATION/
 
 
-    public ${NAME}() {
+    public Thrashing() {
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
-        //damage = baseDamage = DAMAGE;
-        //block = baseBlock = BLOCK;
-        //magicNumber = baseMagicNumber = MAGIC;
+        magicNumber = baseMagicNumber = MAGIC;
 
     }
 
@@ -66,11 +61,7 @@ public class ${NAME} extends AbstractDynamicCard {
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        //AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.damage, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
-        //AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, p, this.block));
-        //AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(m, p, new VulnerablePower(m, this.magicNumber, false), this.magicNumber));
-        //AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new SmokePower(p, p, this.magicNumber), this.magicNumber));
-
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new ThrashingPower(p, p, this.magicNumber), this.magicNumber));
     }
 
 
@@ -79,9 +70,7 @@ public class ${NAME} extends AbstractDynamicCard {
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
-            //upgradeBaseCost(UPGRADED_COST);
-            //upgradeDamage(UPGRADE_PLUS_DMG);
-            //upgradeBlock(UPGRADE_PLUS_BLOCK);
+            upgradeBaseCost(UPGRADED_COST);
             //upgradeMagicNumber(UPGRADE_PLUS_MAGIC);
             //rawDescription = UPGRADE_DESCRIPTION;
 

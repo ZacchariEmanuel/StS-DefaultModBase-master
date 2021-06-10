@@ -1,5 +1,6 @@
 package testMod.cards;
 
+import basemod.AutoAdd;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -10,7 +11,7 @@ import testMod.DefaultMod;
 import testMod.characters.TheDefault;
 
 import static testMod.DefaultMod.makeCardPath;
-
+@AutoAdd.Ignore
 public class DefaultSecondMagicNumberSkill extends AbstractDynamicCard {
 
     /*

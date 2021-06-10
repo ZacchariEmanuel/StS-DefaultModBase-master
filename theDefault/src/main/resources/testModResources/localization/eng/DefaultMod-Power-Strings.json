@@ -1,4 +1,8 @@
 {
+"testMod:ThrashingPower": {
+        "NAME": "Thrashing",
+        "DESCRIPTIONS": ["At the end of your turn, gain %d thorn.", "At the end of your turn, gain %d thorns."]
+},
 "testMod:SmokePower": {
         "NAME": "Smoke",
         "DESCRIPTIONS": ["Until your next turn, dodge attacks that deal %d or less damage."]

@@ -1,5 +1,6 @@
 package testMod.cards;
 
+import basemod.AutoAdd;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -10,7 +11,7 @@ import testMod.DefaultMod;
 import testMod.characters.TheDefault;
 
 import static testMod.DefaultMod.makeCardPath;
-
+@AutoAdd.Ignore
 public class DefaultUncommonAttack extends AbstractDynamicCard {
 
     /*

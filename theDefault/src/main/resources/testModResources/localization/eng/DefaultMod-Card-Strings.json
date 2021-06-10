@@ -1,4 +1,30 @@
 {
+  "testMod:Thrashing": {
+    "NAME": "Thrashing",
+    "DESCRIPTION": "At the end of your turn, gain !M! Thorns."
+  },
+  "testMod:BurnOut": {
+    "NAME": "BurnOut",
+    "DESCRIPTION": "Deal testmod:Light damage to an enemy. Reduce your Light by 1. NL Repeat until you are out of Light.",
+    "UPGRADE_DESCRIPTION": "Gain !M! testmod:Light. NL Deal testmod:Light damage to an enemy. Reduce your Light by 1. NL Repeat until you are out of Light."
+  },
+  "testMod:Penance": {
+    "NAME": "Penance",
+    "DESCRIPTION": "Gain !M! Thorns."
+  },
+  "testMod:HeavyBlow": {
+    "NAME": "Heavy Blow",
+    "DESCRIPTION": "Deal !D! damage. NL Draw !M! cards."
+  },
+  "testMod:DrawBlock": {
+    "NAME": "Draw Block",
+    "DESCRIPTION": "Gain !B! Block. NL Draw !M! cards."
+  },
+  "testMod:Reprisal": {
+    "NAME": "Reprisal",
+    "DESCRIPTION": "Deal damage to a monster equal to the amount of attack it has.",
+    "UPGRADE_DESCRIPTION": "Deal damage to a monster equal to the amount of attack it has. NL Then apply !M! Weak."
+  },
   "testMod:StrengthDexPower": {
     "NAME": "Pain and Gain",
     "DESCRIPTION": "Choose  [#feffd9]Pain[] or [#8f918e]Gain[]."

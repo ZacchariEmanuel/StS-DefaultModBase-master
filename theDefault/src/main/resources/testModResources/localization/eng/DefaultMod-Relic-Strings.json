@@ -17,7 +17,7 @@
     "NAME": "Duality",
     "FLAVOR": "Just as we have two eyes and two feet, duality is a part of life.",
     "DESCRIPTIONS": [
-      "Start combat with 3 testmod:Light and 3 testmod:Dark"
+      "Start combat with 4 testmod:Light and 4 testmod:Dark"
     ]
   },
   "testMod:DualityStarterRelic": {
