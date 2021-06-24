@@ -78,6 +78,7 @@ public class VampireBat extends AbstractDynamicCard implements OnHeal {
 
     @Override
     public void triggerOnHeal(int amount) {
-        addToBot((AbstractGameAction)new DrawPileThisToHandAction(this));
+        if(amount > 0)
+            addToBot((AbstractGameAction)new DrawPileThisToHandAction(this));
     }
 }

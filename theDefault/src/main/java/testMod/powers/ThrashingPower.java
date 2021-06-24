@@ -50,7 +50,7 @@ public class ThrashingPower extends AbstractPower implements CloneablePowerInter
 
     @Override
     public void atEndOfTurn(final boolean isPlayer) {
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(owner,source,new ThornsPower(owner,1),1));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(owner,source,new ThornsPower(owner,amount),amount));
     }
 
     // Update the description when you apply this power. (i.e. add or remove an "s" in keyword(s))

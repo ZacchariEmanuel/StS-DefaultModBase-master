@@ -4,6 +4,7 @@ import basemod.abstracts.CustomRelic;
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
+import com.megacrit.cardcrawl.actions.common.DamageRandomEnemyAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -14,6 +15,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import testMod.DefaultMod;
 import testMod.powers.DarkPower;
 import testMod.powers.LightPower;
+import testMod.util.ModUtil;
 import testMod.util.TextureLoader;
 
 import static testMod.DefaultMod.makeRelicOutlinePath;
@@ -48,10 +50,13 @@ public class DualityStarterRelic extends CustomRelic {
 
     @Override
     public void onPlayerEndTurn() {
-        flash();
+
         //this.addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
         if(getLightCount() > 0){
-            this.addToBot(new DamageAllEnemiesAction((AbstractCreature)null, DamageInfo.createDamageMatrix(getLightCount(), true), DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+            flash();
+            addToBot(new DamageRandomEnemyAction(new DamageInfo(AbstractDungeon.player, getLightCount(), DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+            //Damage all enemies
+            //this.addToBot(new DamageAllEnemiesAction((AbstractCreature)null, DamageInfo.createDamageMatrix(getLightCount(), true), DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
             //this.stopPulse();
         }
 
@@ -64,11 +69,13 @@ public class DualityStarterRelic extends CustomRelic {
     //Heal for Dark at end of battle
     @Override
     public void onVictory() {
-        this.flash();
-        this.addToTop(new RelicAboveCreatureAction(AbstractDungeon.player, this));
-        AbstractPlayer p = AbstractDungeon.player;
-        if (p.currentHealth > 0) {
-            p.heal(getDarkCount());
+        if(ModUtil.getDarkCount() > 0) {
+            this.flash();
+            this.addToTop(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+            AbstractPlayer p = AbstractDungeon.player;
+            if (p.currentHealth > 0) {
+                p.heal(getDarkCount());
+            }
         }
     }
 

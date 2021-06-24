@@ -32,7 +32,7 @@ public class SmokePatch{
     @SpirePrefixPatch
     public static void damage(AbstractPlayer __instance, DamageInfo info) {
         if(__instance.hasPower(SmokePower.POWER_ID)){
-            if(__instance.getPower(SmokePower.POWER_ID).amount >= info.output) {
+            if(info.type == DamageInfo.DamageType.NORMAL && __instance.getPower(SmokePower.POWER_ID).amount >= info.output) {
                 info.output = 0;
                 __instance.getPower(SmokePower.POWER_ID).flash();
                 AbstractDungeon.effectList.add(new DodgedWordEffect(AbstractDungeon.player, AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY, "Dodged"));//PlayerUIStrings.TEXT[0]));

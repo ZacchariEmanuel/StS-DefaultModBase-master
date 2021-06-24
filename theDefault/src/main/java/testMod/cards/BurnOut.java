@@ -45,12 +45,15 @@ public class BurnOut extends AbstractDynamicCard {
 
     private static final int COST = 2;
     //private static final int UPGRADED_COST = 2;
+    private static final int MAGIC = 0;
+    private static final int UPGRADE_PLUS_MAGIC = 1;
 
     // /STAT DECLARATION/
 
 
     public BurnOut() {
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
+        magicNumber = baseMagicNumber = MAGIC;
     }
 
 
@@ -64,7 +67,7 @@ public class BurnOut extends AbstractDynamicCard {
 
         for (int i = effect; i > 0; i--){
             AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, i, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
-            p.getPower(LightPower.POWER_ID).amount -= 1;
+            p.getPower(LightPower.POWER_ID).reducePower(1);
         }
     }
 
@@ -75,6 +78,7 @@ public class BurnOut extends AbstractDynamicCard {
         if (!upgraded) {
             upgradeName();
             //upgradeBaseCost(UPGRADED_COST);
+            upgradeMagicNumber(UPGRADE_PLUS_MAGIC);
             rawDescription = UPGRADE_DESCRIPTION;
 
             initializeDescription();

@@ -35,7 +35,7 @@ public class SmokeScreen extends AbstractDynamicCard {
     private static final int COST = 2;
     private static final int UPGRADED_COST = 2;
 
-    private static final int MAGICNUMBER = 7;
+    private static final int MAGICNUMBER = 9;
     private static final int UPGRADE_PLUS_MAGICNUMBER = 2;
 
     // /STAT DECLARATION/

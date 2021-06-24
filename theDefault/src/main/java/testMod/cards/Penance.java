@@ -22,7 +22,7 @@ public class Penance extends AbstractDynamicCard {
     // TEXT DECLARATION
 
     public static final String ID = DefaultMod.makeID(Penance.class.getSimpleName());
-    public static final String IMG = makeCardPath("Flagellation.png"); //Default IMG
+    public static final String IMG = makeCardPath("Penance.png"); //Default IMG
     // Use if you have a png for this card //public static final String IMG = makeCardPath("Penance.png");
 
     // /TEXT DECLARATION/
@@ -31,8 +31,8 @@ public class Penance extends AbstractDynamicCard {
     // STAT DECLARATION
 
     private static final CardRarity RARITY = CardRarity.COMMON;
-    private static final CardTarget TARGET = CardTarget.ENEMY;
-    private static final CardType TYPE = CardType.ATTACK;
+    private static final CardTarget TARGET = CardTarget.SELF;
+    private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = TheDefault.Enums.COLOR_GRAY;
 
     private static final int COST = 2;

@@ -1,4 +1,16 @@
 {
+"testMod:SoulHealPower": {
+        "NAME": "Soul Heal",
+        "DESCRIPTIONS": ["At the end of your turn Soul Heal %d."]
+},
+"testMod:StrikeDamagePower": {
+        "NAME": "Strike Damage",
+        "DESCRIPTIONS": ["Your cards containing \"Strike\" deal %d additional damage."]
+},
+"testMod:BurningBloodPower": {
+        "NAME": "Burning Blood",
+        "DESCRIPTIONS": ["Whenever you heal, deal that much damage to a random enemy.", "Whenever you heal, deal that much damage to a random enemy %d times."]
+},
 "testMod:ThrashingPower": {
         "NAME": "Thrashing",
         "DESCRIPTIONS": ["At the end of your turn, gain %d thorn.", "At the end of your turn, gain %d thorns."]

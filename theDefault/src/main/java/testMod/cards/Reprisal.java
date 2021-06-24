@@ -18,6 +18,8 @@ import testMod.DefaultMod;
 import testMod.characters.TheDefault;
 import testMod.powers.SmokePower;
 
+import java.util.Arrays;
+
 import static testMod.DefaultMod.makeCardPath;
 
 public class Reprisal extends AbstractDynamicCard {
@@ -61,7 +63,14 @@ public class Reprisal extends AbstractDynamicCard {
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        damage = baseDamage + m.getIntentDmg();
+        if(Arrays.asList(new AbstractMonster.Intent[]{
+                AbstractMonster.Intent.ATTACK,
+                AbstractMonster.Intent.ATTACK_BUFF,
+                AbstractMonster.Intent.ATTACK_DEBUFF,
+                AbstractMonster.Intent.ATTACK_DEFEND,
+                }).contains(m.intent)) {
+            damage = damage + m.getIntentDmg();
+        }
         AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.damage, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
         if(upgraded)
             AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(m,p,new WeakPower(m,magicNumber,false),magicNumber));

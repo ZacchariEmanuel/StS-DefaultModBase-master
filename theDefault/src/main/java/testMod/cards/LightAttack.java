@@ -45,7 +45,7 @@ public class LightAttack extends AbstractDynamicCard {
     public static final CardColor COLOR = TheDefault.Enums.COLOR_GRAY;
 
     private static final int COST = 1;
-    private static final int DAMAGE = 0;
+    private static final int DAMAGE = 5;
 
     private static final int MAGIC = 1;
     private static final int UPGRADE_PLUS_MAGIC = 1;

@@ -44,7 +44,7 @@ public class LightDarkConsumeAction extends AbstractGameAction {
                     if(increaseLightAmount > 0){
                         int PriorLightAmount = LightDarkPatch.InitialLightAmount.get(AbstractDungeon.player);
                         LightDarkPatch.InitialLightAmount.set(AbstractDungeon.player, PriorLightAmount + increaseLightAmount);
-                        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player,AbstractDungeon.player,new LightPower(AbstractDungeon.player,AbstractDungeon.player,increaseDarkAmount)));
+                        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player,AbstractDungeon.player,new LightPower(AbstractDungeon.player,AbstractDungeon.player,increaseLightAmount)));
                     }
                 }
 
